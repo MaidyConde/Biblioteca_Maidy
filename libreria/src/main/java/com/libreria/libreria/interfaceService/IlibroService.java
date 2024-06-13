@@ -11,6 +11,8 @@ public interface IlibroService {
 
     public List<Libro> findAll();
 
+    public List<Libro> filtroLibro(String filtro);
+
     public Optional<Libro> findOne(String id);
 
     public int deleteForever(String id);

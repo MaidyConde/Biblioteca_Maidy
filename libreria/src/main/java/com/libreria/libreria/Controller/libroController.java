@@ -37,9 +37,15 @@ public class libroController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> findOne(@PathVariable String id) {
-        var Libro = libroService.findOne(id);
-        return new ResponseEntity<>(Libro, HttpStatus.OK);
+        public ResponseEntity<Object> findOne(@PathVariable String id) {
+         var Libro = libroService.findOne(id);
+       return new ResponseEntity<>(Libro, HttpStatus.OK);
+    }
+
+    @GetMapping("/busquedafiltro/{filtro}")
+    public ResponseEntity<Object> findFiltro(@PathVariable String filtro) {
+        var listaLibro = libroService.filtroLibro(filtro);
+        return new ResponseEntity<>(listaLibro, HttpStatus.OK); 
     }
 
     @DeleteMapping("/eliminarPermanente/{id}")

@@ -3,9 +3,15 @@ body {
     margin: 0;
     padding: 0;
 }
-
+img{
+    width: 200px; 
+    height: 100px; 
+    background-image: url('/front-end/img/logobibli.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 header {
-    background-color: #F0F0F0;
+    background-color: #16223f;
     padding: 20px;
 }
 
@@ -14,17 +20,23 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
 }
 
 nav ul li {
     display: inline-block;
     margin-right: 20px;
+    margin: 10px;
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #fff9f9;
+    margin-top: 50px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .banner {
@@ -36,9 +48,12 @@ nav ul li a {
     text-align: center;
 }
 
-.banner-contenido {
-    max-width: 500px;
-    text-align: center; 
+.content {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .banner-contenido h1 {
@@ -51,3 +66,21 @@ nav ul li a {
     line-height: 1.5;
     margin-bottom: 20px;
 }
+
+.Tabla{
+    width: 80%;
+    margin: 2% 0% 0% 10%;
+}
+
+.Filtre{
+    width: 80%;
+    margin: 2% 0% 0% 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#filtroTabla {
+    flex: 1; /* Esto hará que el campo de entrada ocupe todo el espacio disponible */
+    margin-right: 10px; /* Agrega un poco de espacio entre el campo de entrada y el botón */
+}
+

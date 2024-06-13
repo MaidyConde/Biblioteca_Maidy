@@ -23,6 +23,12 @@ public class libroService implements IlibroService {
     }
 
     @Override
+    public List<Libro> filtroLibro(String filtro) {
+        List<Libro> listaLibro =data.filtroLibro(filtro);
+        return listaLibro;
+    }
+
+    @Override
     public List<Libro> findAll(){
         List<Libro> listaLibro = (List<Libro>) data.findAll();
         return listaLibro;
