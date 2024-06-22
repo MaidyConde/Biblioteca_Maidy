@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body onload="listarLibro()">
+<body onload="listarPrestamo()">
 
     <header>
         <nav>
@@ -31,7 +31,7 @@
 
     <div class="filtro Filtre">
         <input type="text" id="filtroTabla" placeholder="Buscar...">
-        <button id="botonFiltro" class="btn btn-success">Añadir nuevo libro</button>
+        <button id="botonFiltro" class="btn btn-success">Añadir nuevo prestamo</button>
     </div>
  
     <div class="table-container Tabla">
@@ -39,12 +39,11 @@
             <table class="table table-striped">
                 <tr style="text-align: center;">
                     <th>ID</th>
-                    <th>Titulo</th>
-                    <th>Autor</th>
-                    <th>ISBN</th>
-                    <th>Genero</th>
-                    <th>N° disponibles</th>
-                    <th>N° ocupados</th>
+                    <th>Fecha préstamo</th>
+                    <th>Fecha devolución</th>
+                    <th>Usuario que realiza el préstamo</th>
+                    <th>Libro prestado</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
                 <tbody id="cuerpoTabla"></tbody>
@@ -52,6 +51,6 @@
         </div>
     </div>
 
-    <script src="/front-end/js/Libro.js"></script>
+    <script src="/front-end/js/Prestamo.js"></script>
 </body>
 </html>

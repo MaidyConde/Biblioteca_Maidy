@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body onload="listarLibro()">
+<body onload="listarMultas()">
 
     <header>
         <nav>
@@ -31,7 +31,7 @@
 
     <div class="filtro Filtre">
         <input type="text" id="filtroTabla" placeholder="Buscar...">
-        <button id="botonFiltro" class="btn btn-success">Añadir nuevo libro</button>
+        <button id="botonFiltro" class="btn btn-success">Añadir nueva multa</button>
     </div>
  
     <div class="table-container Tabla">
@@ -39,19 +39,17 @@
             <table class="table table-striped">
                 <tr style="text-align: center;">
                     <th>ID</th>
-                    <th>Titulo</th>
-                    <th>Autor</th>
-                    <th>ISBN</th>
-                    <th>Genero</th>
-                    <th>N° disponibles</th>
-                    <th>N° ocupados</th>
+                    <th>Usuario multado</th>
+                    <th>Préstamo</th>
+                    <th>Valor multa</th>
+                    <th>Fecha multa</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
                 <tbody id="cuerpoTabla"></tbody>
             </table>
         </div>
     </div>
-
-    <script src="/front-end/js/Libro.js"></script>
+    <script src="/front-end/js/Multas.js"></script>
 </body>
 </html>

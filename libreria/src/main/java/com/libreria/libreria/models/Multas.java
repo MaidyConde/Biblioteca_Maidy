@@ -18,32 +18,29 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Prestamo")
-public class Prestamo {
+@Entity(name = "Multas")
+public class Multas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "idPrestamo", nullable = false, length = 36)
-    private String idPrestamo;
-
-    @Column(name = "fechaPrestamo", nullable = false, length = 36)
-    private Date fechaPrestamo;
-
-    @Column(name = "fechaDevolucion", nullable = false, length = 36)
-    private Date fechaDevolucion;
+    @Column(name = "idMultas", nullable = false, length = 36)
+    private String idMultas;
 
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private Usuario Usuario;
 
     @ManyToOne
-    @JoinColumn(name = "idLibro")
-    private Libro Libro;
+    @JoinColumn(name = "idPrestamo")
+    private Prestamo Prestamo;
 
-    @Column(name = "Estado", nullable = false, length = 3)
-    private String Estado;
-// o Estado
-// 1. Préstamo
-// 2. Entregado
-// 3. Cancelado
+    @Column(name = "valorMulta", nullable = false, length = 36)
+    private String valorMulta ;
+
+    @Column(name = "fechaMulta", nullable = false, length = 36)
+    private Date fechaMulta ;
+
+    @Column(name = "Estado", nullable = false, length = 36)
+    private String Estado ;
+
 }
