@@ -20,7 +20,7 @@ function listarLibro() {
                     <td class="text-center align-middle">${result[i]["numeroEjemplaresDisponibles"]}</td>
                     <td class="text-center align-middle">${result[i]["numeroEjemplaresOcupados"]}</td>
                     <td class="text-center align-middle">
-                        <i class="fas fa-edit editar"  onclick="editar;" data-id="${result[i]["idLibro"]}"></i>
+                        <i class="fas fa-edit editar"  onclick="RegistrarLibroBandera=false;" data-id="${result[i]["idLibro"]}"></i>
                         <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idLibro"]}"></i>
                     </td>
                 `;
@@ -338,6 +338,126 @@ $(document).on("click", ".editar", function () {
         }
     });
 });
+
+
+
+$(document).on("click", ".Editar", function(){
+    Limpiar();
+    idLibro = $(this).data("id");
+    $.ajax({
+        url: url + idLibro,
+        type: "GET",
+        success: function (Libro){
+            document.getElementById("Titulo").value=Libro.titulo;
+            document.getElementById("Autor").value=Libro.autor;
+            document.getElementById("Genero").value=Libro.genero;
+            document.getElementById("numeroEjemplaresDisponibles").value=Libro.numeroEjemplaresDisponibles;
+            document.getElementById("numeroEjemplaresOcupados").value=Libro.numeroEjemplaresOcupados;
+            document.getElementById("ISBN").value=Libro.ISBN;
+            $('#exampleModal').modal('show');
+        },
+        error: function(error){
+            alert("Error al obtener los datos del Libro: " + error.statusText);
+        }
+    });
+});
+
+
+
+
+
+
+function ConsultarLibro(id){
+    $.ajax({
+        url: url + id,
+        type:"GET",
+        success: function (result){
+            document.getElementById("Titulo").value = result["Titulo"];
+            document.getElementById("Autor").value = result["Autor"];
+            document.getElementById("Genero").value = result["Genero"];
+            document.getElementById("EjemplaresDisponibles").value = result["EjemplaresDisponibles"];
+            document.getElementById("EjemplaresOcupados").value = result["EjemplaresOcupados"];
+            document.getElementById("ISBN").value = result["ISBN"];
+        }
+    });
+}
+
+function ActualizarLibro(){
+    var idLibro = document.getElementById("idLibro").value;
+    let formData = {
+        "Titulo": document.getElementById("Titulo").value,
+        "Autor": document.getElementById("Autor").value,
+        "Genero": document.getElementById("Genero").value,
+        "EjemplaresDisponibles": document.getElementById("EjemplaresDisponibles").value,
+        "EjemplaresOcupados": document.getElementById("EjemplaresOcupados").value,
+        "ISBN": document.getElementById("ISBN").value
+    };
+
+    if(ValidarCampos){
+        $.ajax({
+            url: url + idLibro,
+            type: "PUT",
+            data: formData,
+            success: function (result){
+                Swal.fire({
+                    title: "¡Excelente!",
+                    text: "Se guardó correctamente",
+                    icon: "success"
+                });
+                ListarLibro();
+            },
+            error: function (error){
+                Swal.fire({
+                    title: "¡Error!",
+                    text: "No se guardó",
+                    icon: "error"
+                });
+            }
+
+        });
+    } else{
+        Swal.fire({
+            title: "¡Error!",
+            text: "Llene todos los campos correctamente",
+            icon: "error"
+        });
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $(document).on("click", ".eliminar", function () {
     // Obtener el ID del médico desde el atributo data del elemento clicado

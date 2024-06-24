@@ -36,9 +36,9 @@ public class Libro {
     private String Genero;
 
     @Column(name = "numeroEjemplaresDisponibles", nullable = false, length = 100)
-    private String numeroEjemplaresDisponibles;
+    private int numeroEjemplaresDisponibles;
 
     @Column(name = "numeroEjemplaresOcupados", nullable = false, length = 100)
-    private String numeroEjemplaresOcupados;
+    private int numeroEjemplaresOcupados;
 
 }
