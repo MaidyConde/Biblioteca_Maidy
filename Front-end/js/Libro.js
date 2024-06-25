@@ -1,5 +1,58 @@
 // URL de la API
 var url = "http://localhost:8080/api/v1/Libro/";
+//esto solo permite letras
+//document.getElementById("titulo").addEventListener("keypress" , soloLetras);
+
+const letrasPermitidas = [
+    'A', 'Á', 'B', 'C', 'D', 'E', 'É', 'F', 'G', 'H', 'I', 'Í', 'J', 'K', 'L', 'M', 
+    'N', 'Ñ', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'T', 'U', 'Ú', 'Ü', 'V', 'W', 'X', 'Y', 'Z',
+    'a', 'á', 'b', 'c', 'd', 'e', 'é', 'f', 'g', 'h', 'i', 'í', 'j', 'k', 'l', 'm',
+    'n', 'ñ', 'o', 'ó', 'p', 'q', 'r', 's', 't', 'u', 'ú', 'ü', 'v', 'w', 'x', 'y', 'z', ' '
+];
+const numerosPermitidos = [
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
+];
+const signosPermitidos = [
+    '.', ',', '@','-', '_'
+];
+
+function soloLetras(event){
+    console.log("Llave presionada:"+ event.key);
+    console.log("Codigo letra:"+event.keyCode);
+
+    if (!(letrasPermitidas.includes(event.key))){
+        event.preventDefault();
+        return;
+    }else{
+        
+    }
+}
+
+function soloNumeros(event){
+    console.log("Llave presionada:"+ event.key);
+    console.log("Codigo letra:"+event.keyCode);
+
+    if (!(numerosPermitidos.includes(event.key))){
+        event.preventDefault();
+        return;
+    }else{
+        
+    }
+}
+
+function alfaNumericos(event){
+    console.log("Llave presionada:"+ event.key);
+    console.log("Codigo letra:"+event.keyCode);
+
+    if (!(numerosPermitidos.includes(event.key)) || (letrasPermitidas.includes(event.key))){
+        event.preventDefault();
+        return;
+    }else{
+        
+    }
+}
+
+
 // Función para listar los clientes
 function listarLibro() {
     $.ajax({
@@ -264,7 +317,7 @@ function validarnumeroEjemplaresOcupados(cuadroNumero) {
 
 function AplicarFiltros(filtro) {
     if (filtro=== '') {
-        listarCliente(); // Mostrar todos los médicos si estado es vacío
+        listarLibro(); // Mostrar todos los médicos si estado es vacío
     }else{
         $.ajax({
             url: "http://localhost:8080/api/v1/Libro/busquedafiltro/" + filtro,
@@ -284,7 +337,7 @@ function AplicarFiltros(filtro) {
                         <td class="text-center align-middle">${result[i]["numeroEjemplaresDisponibles"]}</td>
                         <td class="text-center align-middle">${result[i]["numeroEjemplaresOcupados"]}</td>
                         <td class="text-center align-middle">
-                            <i class="fas fa-edit editar"  onclick="editar;" data-id="${result[i]["idLibro"]}"></i>
+                            <i class="fas fa-edit editar"  onclick="RegistrarLibroBandera=false;" data-id="${result[i]["idLibro"]}"></i>
                             <i class="fas fa-trash-alt eliminar" data-id="${result[i]["idLibro"]}"></i>
                         </td>
                     `;
@@ -325,10 +378,10 @@ $(document).on("click", ".editar", function () {
         url: url + idLibro,
         type: "GET",
         success: function (libro) {
-            document.getElementById("Titulo").value = libro.Titulo;
-            document.getElementById("Autor").value = libro.Autor;
-            document.getElementById("ISBN").value = libro.ISBN;
-            document.getElementById("Genero").value = libro.Genero;
+            document.getElementById("Titulo").value = libro.titulo;
+            document.getElementById("Autor").value = libro.autor;
+            document.getElementById("ISBN").value = libro.isbn;
+            document.getElementById("Genero").value = libro.genero;
             document.getElementById("numeroEjemplaresDisponibles").value = libro.numeroEjemplaresDisponibles;
             document.getElementById("numeroEjemplaresOcupados").value = libro.numeroEjemplaresOcupados;
             $('#exampleModal').modal('show');
@@ -338,126 +391,6 @@ $(document).on("click", ".editar", function () {
         }
     });
 });
-
-
-
-$(document).on("click", ".Editar", function(){
-    Limpiar();
-    idLibro = $(this).data("id");
-    $.ajax({
-        url: url + idLibro,
-        type: "GET",
-        success: function (Libro){
-            document.getElementById("Titulo").value=Libro.titulo;
-            document.getElementById("Autor").value=Libro.autor;
-            document.getElementById("Genero").value=Libro.genero;
-            document.getElementById("numeroEjemplaresDisponibles").value=Libro.numeroEjemplaresDisponibles;
-            document.getElementById("numeroEjemplaresOcupados").value=Libro.numeroEjemplaresOcupados;
-            document.getElementById("ISBN").value=Libro.ISBN;
-            $('#exampleModal').modal('show');
-        },
-        error: function(error){
-            alert("Error al obtener los datos del Libro: " + error.statusText);
-        }
-    });
-});
-
-
-
-
-
-
-function ConsultarLibro(id){
-    $.ajax({
-        url: url + id,
-        type:"GET",
-        success: function (result){
-            document.getElementById("Titulo").value = result["Titulo"];
-            document.getElementById("Autor").value = result["Autor"];
-            document.getElementById("Genero").value = result["Genero"];
-            document.getElementById("EjemplaresDisponibles").value = result["EjemplaresDisponibles"];
-            document.getElementById("EjemplaresOcupados").value = result["EjemplaresOcupados"];
-            document.getElementById("ISBN").value = result["ISBN"];
-        }
-    });
-}
-
-function ActualizarLibro(){
-    var idLibro = document.getElementById("idLibro").value;
-    let formData = {
-        "Titulo": document.getElementById("Titulo").value,
-        "Autor": document.getElementById("Autor").value,
-        "Genero": document.getElementById("Genero").value,
-        "EjemplaresDisponibles": document.getElementById("EjemplaresDisponibles").value,
-        "EjemplaresOcupados": document.getElementById("EjemplaresOcupados").value,
-        "ISBN": document.getElementById("ISBN").value
-    };
-
-    if(ValidarCampos){
-        $.ajax({
-            url: url + idLibro,
-            type: "PUT",
-            data: formData,
-            success: function (result){
-                Swal.fire({
-                    title: "¡Excelente!",
-                    text: "Se guardó correctamente",
-                    icon: "success"
-                });
-                ListarLibro();
-            },
-            error: function (error){
-                Swal.fire({
-                    title: "¡Error!",
-                    text: "No se guardó",
-                    icon: "error"
-                });
-            }
-
-        });
-    } else{
-        Swal.fire({
-            title: "¡Error!",
-            text: "Llene todos los campos correctamente",
-            icon: "error"
-        });
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 $(document).on("click", ".eliminar", function () {
     // Obtener el ID del médico desde el atributo data del elemento clicado
