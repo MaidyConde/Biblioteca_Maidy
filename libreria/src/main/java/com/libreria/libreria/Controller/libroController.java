@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-@RequestMapping("/api/v1/Libro/")
+@RequestMapping("/api/v1/Libro")
 @RestController
 public class libroController {
 
@@ -61,7 +61,7 @@ public class libroController {
 
             Libro.setTitulo(LibroUpdate.getTitulo());
             Libro.setAutor(LibroUpdate.getAutor());
-            Libro.setISBN(LibroUpdate.getISBN());
+            Libro.setIsbn(LibroUpdate.getIsbn());
             Libro.setGenero(LibroUpdate.getGenero());
             Libro.setNumeroEjemplaresDisponibles(LibroUpdate.getNumeroEjemplaresDisponibles());
             Libro.setNumeroEjemplaresOcupados(LibroUpdate.getNumeroEjemplaresOcupados());

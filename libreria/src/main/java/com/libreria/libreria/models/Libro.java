@@ -29,8 +29,8 @@ public class Libro {
     @Column(name = "Autor", nullable = false, length = 36)
     private String Autor;
 
-    @Column(name = "ISBN", nullable = false, length = 15)
-    private String ISBN;
+    @Column(name = "isbn", nullable = false, length = 15)
+    private String isbn;
 
     @Column(name = "Genero", nullable = false, length = 36)
     private String Genero;
